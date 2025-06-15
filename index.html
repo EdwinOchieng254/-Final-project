@@ -44,6 +44,23 @@
             padding: 20px 0;
             position: relative;
         }
+
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        @media (max-width: 992px) {
+            .logo {
+                position: static;
+                transform: none;
+                margin: 0 auto;
+                text-align: center;
+                width: 100%;
+            }
+        }
         
         .nav-links {
             display: flex;
@@ -63,12 +80,6 @@
         
         .nav-links a:hover {
             color: #4a90e2;
-        }
-        
-        .logo {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
         }
         
         .logo a {
@@ -503,6 +514,8 @@
                 position: static;
                 transform: none;
                 margin: 0 auto;
+                text-align: center;
+                width: 100%;
             }
             
             nav {
@@ -678,7 +691,7 @@
             <h2 class="section-title">Popular Accessories</h2>
             <div class="accessories-grid">
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');"></div>
+                    <div class="product-img" style="background-image: url('wireless.jpg');"></div>
                     <div class="product-content">
                         <h3>Wireless Charger</h3>
                         <div class="product-price">$29.99</div>
@@ -692,7 +705,7 @@
                 </div>
                 
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1600269452121-4f2416e55c28?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');"></div>
+                    <div class="product-img" style="background-image: url('Earpads\ 1.jpg');"></div>
                     <div class="product-content">
                         <h3>Bluetooth Earbuds</h3>
                         <div class="product-price">$79.99</div>
@@ -706,7 +719,7 @@
                 </div>
                 
                 <div class="product-card">
-                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80');"></div>
+                    <div class="product-img" style="background-image: url('case.webp');"></div>
                     <div class="product-content">
                         <h3>Protective Case</h3>
                         <div class="product-price">$24.99</div>
@@ -798,7 +811,7 @@
                     <div class="testimonial-content">
                         <p>I was hesitant to buy a phone online, but their customer service team answered all my questions and made the process so easy. Highly recommend!</p>
                     </div>
-                    <div class="testimonial-author">— Russian Ochieng</div>
+                    <div class="testimonial-author">— Russian</div>
                 </div>
                 
                 <div class="testimonial-card">
@@ -900,7 +913,7 @@
                             <i class="fas fa-phone"></i>
                             <div>
                                 <h4>Phone</h4>
-                                <p>+1 (800) 123-4567</p>
+                                <p>+254112594018</p>
                                 <p>Mon-Fri: 9AM-6PM EST</p>
                             </div>
                         </div>
@@ -909,7 +922,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
                                 <h4>Store Location</h4>
-                                <p>123 Tech Avenue, Digital City, NY 10001</p>
+                                <p>123 Tech Avenue, Next Bondo Town</p>
                                 <p>Open Mon-Sat: 10AM-8PM</p>
                             </div>
                         </div>
@@ -1009,9 +1022,46 @@
                 link.style.display = link.style.display === 'flex' ? 'none' : 'flex';
             });
         });
-        
+
         // FAQ Accordion
         const faqQuestions = document.querySelectorAll('.faq-question');
         faqQuestions.forEach(question => {
             question.addEventListener('click', () => {
-                const answer =
+                const answer = question.nextElementSibling;
+                answer.classList.toggle('active');
+            });
+        });
+
+        // Make Add to Cart buttons responsive
+        document.querySelectorAll('.btn').forEach(btn => {
+            if (btn.textContent.trim() === 'Add to Cart') {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Added to cart!');
+                });
+            }
+        });
+
+        // Make contact form responsive
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for contacting us! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Make social media links functional
+        const socialLinks = document.querySelectorAll('.social-links a');
+        const urls = [
+            'https://facebook.com/techmobile', 
+            'https://instagram.com/techmobile', 
+            'https://twitter.com/techmobile', 
+            'https://youtube.com/techmobile'
+        ];
+        socialLinks.forEach((a, i) => {
+            a.href = urls[i];
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+        });
+    </script>
+</body>
+</html>
